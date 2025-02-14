@@ -11,7 +11,9 @@ router.post("/group", async (req, res) => {
   // Check if group name already exists
   const existingGroup = await Group.findOne({ name });
   if (existingGroup) {
-    return res.status(400).json({ message: "Group with this name already exists." });
+    return res
+      .status(400)
+      .json({ message: "Group with this name already exists." });
   }
 
   // Create new group
@@ -31,7 +33,7 @@ router.post("/group", async (req, res) => {
 // Add user to group (Only admin can add users to groups)
 router.post("/group/:groupId/members", checkAdmin, async (req, res) => {
   const { groupId } = req.params;
-  const { userId, user } = req.body;  // Expect the user info and userId in the body
+  const { userId, user } = req.body; // Expect the user info and userId in the body
 
   try {
     // Check if the group exists
@@ -43,7 +45,9 @@ router.post("/group/:groupId/members", checkAdmin, async (req, res) => {
     // Check if the user already exists in the group
     const existingMember = group.members.includes(userId);
     if (existingMember) {
-      return res.status(400).json({ message: "User is already a member of the group." });
+      return res
+        .status(400)
+        .json({ message: "User is already a member of the group." });
     }
 
     // Add the user to the group's members
