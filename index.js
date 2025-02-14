@@ -5,6 +5,7 @@ const categories = require("./routes/category");
 const userRoute = require("./routes/userRoute");
 const groupRoutes= require("./routes/groupRoutes");
 const mongoose = require("mongoose");
+
 // testing purposes
 mongoose.connect("mongodb://localhost:27017/clockifyClone")
   .then(() => console.log("Connected to MongoDB"))
