@@ -17,11 +17,11 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB:", err));
 
 application.use(express.json());
-application.use("/api", userRouter);
-application.use("/tracker", tracker);
-application.use("/categories", categories);
-application.use(userRoute);
-application.use(groupRoutes);
+// // application.use("/api", userRouter);
+// application.use("/tracker", tracker);
+// application.use("/categories", categories);
+// // application.use(userRoute);
+// application.use(groupRoutes);
 
 application.get("/", (request, response) => {
   response.send("Hello World!");
