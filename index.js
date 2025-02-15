@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const tracker = require("./routes/tracker");
 const categories = require("./routes/category");
 const userRoute = require("./routes/userRoute");
@@ -17,6 +18,7 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB:", err));
 
 application.use(express.json());
+application.use(cors(["http://localhost:5173"]));
 application.use("/api", userRouter);
 application.use("/tracker", tracker);
 application.use("/categories", categories);
