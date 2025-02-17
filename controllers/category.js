@@ -4,10 +4,11 @@ const Category = require("../models/Category");
 const createCategory = async (req, res) => {
   try {
     const { name } = req.body;
-    const newCategory = new Category({ name });
+    const newCategory = new Category(name);
     await newCategory.save();
     res.status(201).json(newCategory);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: "Error creating category" });
   }
 };
@@ -56,11 +57,12 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const category = await Category.findById(id);
-    if (!category)
-      return res.status(404).json({ message: "Category not found" });
+    const category = await Category.findByIdAndDelete(id);
 
-    await category.remove();
+    if (!category) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
     res.json({ message: "Category deleted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Error deleting category" });

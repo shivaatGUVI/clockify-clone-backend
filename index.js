@@ -13,7 +13,7 @@ dotenv.config();
 const application = express();
 
 application.use(express.json());
-application.use(cors());
+application.use(cors(["http://localhost:5173"]));
 application.use("/api", userRouter);
 application.use("/tracker", tracker);
 application.use("/categories", categories);
