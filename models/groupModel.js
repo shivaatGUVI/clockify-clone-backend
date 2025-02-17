@@ -10,7 +10,7 @@ const groupSchema = new mongoose.Schema(
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // This will store references to User documents
+        ref: "UserModel", // This will store references to User documents
       },
     ],
   },

@@ -26,12 +26,17 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    group:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Group",
+      required: false, 
+    }
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const UserModel = mongoose.model("User", userSchema);
 
-module.exports = { User };
+module.exports = { UserModel };

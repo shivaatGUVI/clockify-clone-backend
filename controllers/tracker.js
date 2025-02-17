@@ -5,7 +5,7 @@ const startTask = async (req, res) => {
   try {
     const { category, title } = req.body;
     const newTask = new Task({
-      user: req.user.id,
+      // user: req.user.id,
       category,
       title,
       startTime: new Date(),
@@ -13,6 +13,7 @@ const startTask = async (req, res) => {
     await newTask.save();
     res.status(201).json(newTask);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Error starting task" });
   }
 };
