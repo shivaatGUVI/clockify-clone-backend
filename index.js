@@ -6,20 +6,14 @@ const categories = require("./routes/category");
 const groupRoutes = require("./routes/groupRoutes");
 const { userRouter } = require("./routes/user.route");
 const { connectToMongoDB } = require("./utils/db");
-const cors=require("cors");
+const cors = require("cors");
 
 
 dotenv.config();
 const application = express();
 
-// testing purposes
-// mongoose
-//   .connect("mongodb://localhost:27017/clockifyClone")
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((err) => console.error("Could not connect to MongoDB:", err));
-
-application.use(cors());
 application.use(express.json());
+application.use(cors("*"));
 application.use("/api", userRouter);
 application.use("/tracker", tracker);
 application.use("/categories", categories);
