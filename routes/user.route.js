@@ -182,4 +182,13 @@ function isAuthenticated(req, res, next) {
   res.status(401).json({ error: "Not authenticated" });
 }
 
+userRouter.get("/users", async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+});
+
 module.exports = { userRouter };

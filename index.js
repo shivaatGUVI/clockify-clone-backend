@@ -1,23 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const dotenv = require("dotenv");
 const tracker = require("./routes/tracker");
 const categories = require("./routes/category");
-const userRoute = require("./routes/userRoute");
 const groupRoutes = require("./routes/groupRoutes");
 const { userRouter } = require("./routes/user.route");
 const { connectToMongoDB } = require("./utils/db");
+const cors = require("cors");
+
 
 dotenv.config();
 const application = express();
 
 application.use(express.json());
-application.use(cors(["http://localhost:5173"]));
+application.use(cors("*"));
 application.use("/api", userRouter);
 application.use("/tracker", tracker);
 application.use("/categories", categories);
-application.use(userRoute);
 application.use(groupRoutes);
 
 application.get("/", (request, response) => {
