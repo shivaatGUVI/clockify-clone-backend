@@ -7,7 +7,7 @@ const startTask = async (req, res) => {
     const now = new Date();
 
     const newTask = new Task({
-      user: req.user.id,
+     // user: req.user.id,
       category,
       title,
       date: now.toISOString().split("T")[0],

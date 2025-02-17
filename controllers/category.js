@@ -4,10 +4,11 @@ const Category = require("../models/Category");
 const createCategory = async (req, res) => {
   try {
     const { name } = req.body;
-    const newCategory = new Category({ name });
+    const newCategory = new Category(name);
     await newCategory.save();
     res.status(201).json(newCategory);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: "Error creating category" });
   }
 };
